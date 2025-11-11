@@ -16,13 +16,16 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish }) => {
           setLettersLeft(
             x => {
               if ( x.length !== 1 ){
+                setMistake(() => {
+                  if (e.key !== x[0]) 
+                    {return true} 
+                    return false 
+                });
                 return e.key === x[0] ? x.slice(1) : x;
+              
               } onFinish(); 
             });
 
-            setMistake(
-              () => { if (e.key !== lettersLeft[0]) {return true} return false ;}
-            )
       }
        
 
