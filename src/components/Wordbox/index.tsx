@@ -7,7 +7,8 @@ interface IWordboxProp {
 }
 
 const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish }) => {
-  const [lettersLeft, setLettersLeft] = useState<string>(word);  
+  const [lettersLeft, setLettersLeft] = useState<string>(word); 
+  const [mistake, setMistake] = useState<boolean>(false);
   
   useEffect(
     () => {
@@ -17,8 +18,11 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish }) => {
               if ( x.length !== 1 ){
                 return e.key === x[0] ? x.slice(1) : x;
               } onFinish(); 
-                
             });
+
+            setMistake(
+              () => { if (e.key !== lettersLeft[0]) {return true} return false ;}
+            )
       }
        
 
@@ -32,7 +36,7 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish }) => {
 
 
   return (
-    <div className="wordbox">{lettersLeft}</div>
+    <div className={ mistake ? "wordbox wordbox--mistake" : "wordbox"}>{lettersLeft}</div>
   );
 };
 
