@@ -6,11 +6,12 @@ interface IWordboxProp {
   onFinish: () => void;
   active: boolean;
   onMistake: () => void;
+  onCorrect: ()=> void;
 }
 
-const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake }) => {
-  const [lettersLeft, setLettersLeft] = useState<string>(word); 
-  const [mistake, setMistake] = useState<boolean>(false);  
+const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake, onCorrect }) => {
+  const [lettersLeft, setLettersLeft] = useState<string>(word === null ? '' : word); 
+  const [mistake, setMistake] = useState<boolean>(false);
   
 
   useEffect(
@@ -19,25 +20,24 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake })
           setLettersLeft(
             x => {
               const isError = e.key !== x[0] && x.length > 0;
-          
+
               setMistake(() => {
                   if (e.key !== x[0]) 
                       {return true} 
                       return false 
               });
-                
+
               if(isError) {
                   setTimeout(() => {
                     onMistake(); 
                   }, 0);
-                };
-
+                } 
                 return e.key === x[0] ? x.slice(1) : x;
               
               } 
             );
       };
-       
+
       if (active) {
             document.addEventListener("keyup", handleKeyUp);
 
@@ -51,10 +51,11 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake })
    
 
     useEffect(() => {
-        if (lettersLeft.length === 0 && word.length > 0) {
+        if (lettersLeft.length === 0 && word !== null && word.length > 0) {
+            onCorrect();
             onFinish();
         }
-    }, [lettersLeft, word, onFinish]); 
+    }, [lettersLeft, word, onFinish, onCorrect]); 
 
     
 
@@ -66,4 +67,3 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake })
 
 
 export default Wordbox;
-

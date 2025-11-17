@@ -1,19 +1,42 @@
 .wordbox {
-  display: inline-block;
-  position: relative;
-  padding: 16px;
-  margin: 4px;
-  background-color: #8fb935;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 16px;
-  line-height: 16px;
-  border-radius: 8px;
-  z-index: 1;
+    font-size: 2.5rem; 
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    background-color: #EBCF00;
+}
+
+.stage__words .wordbox:first-child { 
+    color: #33322B; 
+    background-color: #ecf0f1; 
+    border: 2px solid #C1EB3B; 
+}
+
+.stage__words .wordbox:not(:first-child) {
+    color: #bdc3c7; 
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 0.7;
+    font-size: 2rem; 
 }
 
 .wordbox--mistake {
-  background-color: #e64747;
-  color: white;
+    background-color: #E0B0CE; 
+    color: #EB009F; 
+    animation: shake 0.5s; 
+    border-color: #EB009F !important;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-5px);
+    }
+    40%, 80% {
+        transform: translateX(5px);
+    }
 }
