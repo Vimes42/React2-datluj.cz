@@ -16,37 +16,29 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake, o
 
   useEffect(
     () => {
-      const handleKeyUp = (e: KeyboardEvent) => {
-          setLettersLeft(
-            x => {
-              const isError = e.key !== x[0] && x.length > 0;
-
-              setMistake(() => {
-                  if (e.key !== x[0]) 
-                      {return true} 
-                      return false 
-              });
-
-              if(isError) {
-                  setTimeout(() => {
-                    onMistake(); 
-                  }, 0);
-                } 
-                return e.key === x[0] ? x.slice(1) : x;
-              
-              } 
-            );
-      };
-
-      if (active) {
-            document.addEventListener("keyup", handleKeyUp);
-
-            return () => {
-              document.removeEventListener("keyup", handleKeyUp)
-            }
-      }
+      if (!active) return
       
-    }, [active]
+      const handleKeyUp = (e: KeyboardEvent) => {
+          if (e.key.length !== 1) return;
+
+          if (lettersLeft.length === 0) return;
+
+          const isError = e.key !== lettersLeft[0];
+
+          setMistake(isError);
+
+           if (isError) {
+              onMistake();
+              return;
+            }
+
+          setLettersLeft(lettersLeft.slice(1));
+            };
+  
+          document.addEventListener("keyup", handleKeyUp);
+
+          return () => { document.removeEventListener("keyup", handleKeyUp) }
+      }, [active, lettersLeft, onMistake]
   )
    
 
