@@ -64,6 +64,17 @@ const Stage = () => {
     setCorrectWords(x => x + 1);
   }
 
+  const handleRestart = () => {
+  setMistakes(0);
+  setCorrectWords(0);
+  
+  setTimeToStart(3);
+  setTimeLeft(60);
+  
+  setWords(['jahoda', 'jablko', 'hruška']); 
+  
+  setStatus("countdown");
+};
   
 
   return (
@@ -110,7 +121,7 @@ const Stage = () => {
           <p>Napsal jsi <strong>{correctWords}</strong> slov</p>
           <p>Udělal jsi <strong>{mistakes}</strong> chyb</p>
         </div>
-        <button className="btn_start" onClick={() => window.location.reload()}>Zkusit znovu</button>
+        <button className="btn_start" onClick={handleRestart}>Zkusit znovu</button>
       </div>
     )}
   </div>
