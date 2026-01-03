@@ -1,0 +1,85 @@
+/* --- APP CONTAINER (v App.tsx) --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Světlé pozadí okolo aplikace */
+    padding: 20px;
+}
+
+.container h1 {
+    font-size: 3.5rem;
+    color: #33322B;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- LANDING PAGE --- */
+/* Styly pro uvítací obrazovku, aby ladila se Stage */
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+    background-color: #EAC800; /* Tvoje žlutá */
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.landing-page h2 {
+    font-size: 2.2rem;
+    color: #33322B;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.landing-page p {
+    font-size: 1.2rem;
+    color: #4a4941;
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+.btn_start {
+    padding: 18px 45px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    background-color: #EB009F; /* Tvoje růžová */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(235, 0, 159, 0.3);
+}
+
+.btn_start:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(235, 0, 159, 0.4);
+    background-color: #ff00ad;
+}
+
+.btn_start:active {
+    transform: translateY(0);
+}
+
+/* --- ANIMACE --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

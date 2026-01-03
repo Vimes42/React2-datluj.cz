@@ -7,9 +7,10 @@ interface IWordboxProp {
   active: boolean;
   onMistake: () => void;
   onCorrect: ()=> void;
+  status: string;
 }
 
-const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake, onCorrect }) => {
+const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake, onCorrect, status }) => {
   const [lettersLeft, setLettersLeft] = useState<string>(word === null ? '' : word); 
   const [mistake, setMistake] = useState<boolean>(false);
   
@@ -34,8 +35,11 @@ const Wordbox : React.FC<IWordboxProp> = ({ word, onFinish, active, onMistake, o
 
           setLettersLeft(lettersLeft.slice(1));
             };
-  
-          document.addEventListener("keyup", handleKeyUp);
+          
+            if (status === "playing"){
+              document.addEventListener("keyup", handleKeyUp);
+            } else return;
+          
 
           return () => { document.removeEventListener("keyup", handleKeyUp) }
       }, [active, lettersLeft, onMistake]
